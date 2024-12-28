@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center mb-4 fw-bold">
+    AI Image Generator
+  </h2>
+
+  <div>
+    <div class="card text-center mt-3">
+      <div class="card-header">
+        Image Generation
+      </div>
+      <div class="card-body">
+        {% if image_url %}
+          <div class="image-container">
+            <img src="{{ image_url }}" alt="Generated image" class="img-fluid rounded shadow">
+          </div>
+        {% else %}
+          <p class="text-muted">Enter a prompt below to generate an image</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <form class="container mt-4" id="footer" action="/image" method="POST">
+    <div class="input-group">
+      <input 
+        class="form-control" 
+        placeholder="Describe the image you want to generate..." 
+        name="user_input" 
+        required
+      >
+      <button class="btn btn-primary" type="submit">Generate Image</button>
+    </div>
+  </form>
+</div>
+{% endblock %}
+
+<style>
+.image-container {
+  width: 100%;
+  max-width: 512px;
+  margin: 0 auto;
+  padding: 10px;
+}
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+</style>
